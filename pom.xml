@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sjb</groupId>
-    <artifactId>jpa_skeleton</artifactId>
+    <artifactId>spring_jpa_skeleton</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -93,7 +93,7 @@
                 <directory>src/main/resources-${env}</directory>
             </resource>
         </resources>
-        <finalName>JPA_Skeleton</finalName>
+        <finalName>SPRING_JPA_Skeleton</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -1,1 +1,1 @@
-# jpa_skeleton
+# spring_jpa_skeleton
