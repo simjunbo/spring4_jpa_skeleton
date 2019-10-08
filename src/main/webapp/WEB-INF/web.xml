@@ -12,6 +12,7 @@
             classpath:spring/applicationContext-config.xml
             classpath:spring/applicationContext-database.xml
             classpath:spring/applicationContext-embedded.xml
+            classpath:spring/applicationContext-transaction.xml
         </param-value>
     </context-param>
     <listener>

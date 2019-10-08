@@ -114,6 +114,13 @@
             <version>${querydsl.version}</version>
         </dependency>
 
+        <!-- dbcp -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+
         <!-- Database (H2) -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -130,7 +137,7 @@
                 <directory>src/main/resources-${env}</directory>
             </resource>
         </resources>
-        <finalName>SPRING_JPA_Skeleton</finalName>
+        <finalName>spring-jpa-skeleton</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

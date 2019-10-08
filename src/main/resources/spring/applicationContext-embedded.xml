@@ -8,16 +8,14 @@
        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd"
        default-init-method="init">
 
-    <jdbc:embedded-database id="dataSource" type="H2" database-name="imap">
-        <jdbc:script location="classpath:sql/create-db.sql" encoding="UTF-8"/>
-    </jdbc:embedded-database>
+    <!--
+        <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+            <jdbc:script location="classpath:sql/data.sql"/>
+        </jdbc:initialize-database>
+        -->
 
-    <bean id="h2Server" class="org.h2.tools.Server" factory-method="createTcpServer" init-method="start"
-          destroy-method="stop" depends-on="h2WebServer">
-        <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,9092"/>
-    </bean>
-    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start"
-          destroy-method="stop">
-        <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
+    <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer"
+          init-method="start" destroy-method="stop">
+        <constructor-arg value="-web,-webAllowOthers,-webDaemon,-webPort,8082"/>
     </bean>
 </beans>
