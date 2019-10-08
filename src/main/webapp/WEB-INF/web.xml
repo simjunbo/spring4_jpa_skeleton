@@ -11,6 +11,7 @@
             classpath:spring/applicationContext-bean.xml
             classpath:spring/applicationContext-config.xml
             classpath:spring/applicationContext-database.xml
+            classpath:spring/applicationContext-embedded.xml
         </param-value>
     </context-param>
     <listener>
