@@ -1,4 +1,4 @@
-# Spring4 MVC Skeleton Project
+# Spring4 JPA Skeleton Project
 
 * Maven
 * Spring 4.3.3.RELEASE
