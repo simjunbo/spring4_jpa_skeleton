@@ -19,30 +19,12 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-
-    <context:annotation-config/>
-    <bean id="mappingJackson2HttpMessageConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-                <value>text/json;charset=UTF-8</value>
-                <value>application/json;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-    <bean
-            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <ref bean="mappingJackson2HttpMessageConverter"/>
-            </list>
-        </property>
-    </bean>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- jackson message converter -->
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -58,17 +40,6 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-
-
-    <!--
-    json 형태로 반환 해야 됨
-    <mvc:annotation-driven>
-            <mvc:message-converters>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                    <property name="objectMapper" ref="objectMapper"/>
-                </bean>
-            </mvc:message-converters>
-        </mvc:annotation-driven>-->
 
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
 </beans>
