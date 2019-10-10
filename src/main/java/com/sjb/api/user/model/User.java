@@ -14,8 +14,11 @@ public class User {
     @Column(name = "user_id", length = 100, unique = true, nullable = false)
     String userId;
 
-    @Column(name = "user_name", length = 40)
+    @Column(name = "user_name", length = 10)
     String userName;
+
+    @Column(name = "mobile_no", length = 20)
+    String mobileNo;
 
     public void setUserInfoSeqno(Long userInfoSeqno) {
         this.userInfoSeqno = userInfoSeqno;
@@ -39,5 +42,13 @@ public class User {
 
     public String getUserName() {
         return userName;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
     }
 }

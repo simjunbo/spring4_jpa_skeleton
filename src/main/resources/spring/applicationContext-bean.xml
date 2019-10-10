@@ -18,6 +18,12 @@
     <jpa:repositories base-package="com.sjb.api" entity-manager-factory-ref="sjbEntityManagerFactory"
                       transaction-manager-ref="sjbTransactionManager"/>
 
+    <bean id="jpaQueryFactory" class="com.querydsl.jpa.impl.JPAQueryFactory">
+        <constructor-arg ref="sharedEntityManagerBean"></constructor-arg>
+    </bean>
+
+    <bean id="sharedEntityManagerBean" class="org.springframework.orm.jpa.support.SharedEntityManagerBean"/>
+
     <bean id="sjbEntityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="sjbDataSource"/>
