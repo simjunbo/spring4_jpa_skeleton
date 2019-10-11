@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/data/jpa
-						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-
+						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+						http://mybatis.org/schema/mybatis-spring
+				        http://mybatis.org/schema/mybatis-spring.xsd">
 
     <!-- JPA -->
     <jpa:repositories base-package="com.sjb.api" entity-manager-factory-ref="entityManagerFactory"
@@ -17,13 +19,6 @@
     </bean>
 
     <bean id="sharedEntityManagerBean" class="org.springframework.orm.jpa.support.SharedEntityManagerBean"/>
-
-    <bean id="aidenDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${driverClassName}"/>
-        <property name="url" value="${url}"/>
-        <property name="username" value="${username}"/>
-        <property name="password" value="${password}"/>
-    </bean>
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -43,5 +38,23 @@
                 <prop key="hibernate.connection.release_mode">auto</prop>
             </props>
         </property>
+    </bean>
+
+    <!-- Mybatis -->
+    <mybatis:scan base-package="com.sjb.api" annotation="com.sjb.api.user.dao.annotation.BaseMapper"
+                  factory-ref="aidenSqlSessionFactory"/>
+
+    <bean id="aidenSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="aidenDataSource"/>
+        <property name="mapperLocations" value="classpath*:sqlmap/**/*.xml"/>
+        <property name="configLocation" value="classpath:/config/mybatis-config.xml"/>
+    </bean>
+
+    <!-- DataSource -->
+    <bean id="aidenDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
     </bean>
 </beans>

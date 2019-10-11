@@ -1,5 +1,6 @@
 package com.sjb.api.user.service;
 
+import com.sjb.api.user.dao.mapper.UserMapper;
 import com.sjb.api.user.model.User;
 import com.sjb.api.user.model.UserSearch;
 import com.sjb.api.user.repository.UserRepository;
@@ -10,7 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserMapper userMapper;
 
     public User search(String userId) {
         return userRepository.findByUserId(userId);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD MAPPER 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sjb.api.user.dao.mapper.UserMapper">
+    <select id="getUserCount" parameterType="com.sjb.api.user.model.UserSearch" resultType="long">
+        SELECT COUNT(*)
+        FROM user_info user
+        WHERE user.user_name = #{keyword}
+        OR user.mobile_no = #{keyword}
+    </select>
+</mapper>
