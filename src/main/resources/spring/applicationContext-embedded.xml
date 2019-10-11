@@ -12,7 +12,7 @@
         <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
             <jdbc:script location="classpath:sql/data.sql"/>
         </jdbc:initialize-database>
-        -->
+    -->
 
     <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer"
           init-method="start" destroy-method="stop">

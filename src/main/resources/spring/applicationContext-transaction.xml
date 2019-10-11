@@ -8,10 +8,10 @@
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <tx:annotation-driven transaction-manager="sjbTransactionManager"
+    <tx:annotation-driven transaction-manager="transactionManager"
                           mode="proxy" proxy-target-class="true"/>
 
-    <bean id="sjbTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" primary="true">
-        <property name="entityManagerFactory" ref="sjbEntityManagerFactory"/>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" primary="true">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 </beans>

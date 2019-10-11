@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans.xsd">
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/data/jpa
+						http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <bean id="sjbDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+
+    <!-- JPA -->
+    <jpa:repositories base-package="com.sjb.api" entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>
+
+    <bean id="jpaQueryFactory" class="com.querydsl.jpa.impl.JPAQueryFactory">
+        <constructor-arg ref="sharedEntityManagerBean"></constructor-arg>
+    </bean>
+
+    <bean id="sharedEntityManagerBean" class="org.springframework.orm.jpa.support.SharedEntityManagerBean"/>
+
+    <bean id="aidenDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${driverClassName}"/>
         <property name="url" value="${url}"/>
         <property name="username" value="${username}"/>
         <property name="password" value="${password}"/>
+    </bean>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="aidenDataSource"/>
+        <property name="packagesToScan" value="com.sjb.api"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
+                <prop key="hibernate.id.new_generator_mappings">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.connection.release_mode">auto</prop>
+            </props>
+        </property>
     </bean>
 </beans>
