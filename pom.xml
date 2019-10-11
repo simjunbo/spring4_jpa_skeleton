@@ -19,7 +19,7 @@
         <!-- QueryDsl -->
         <querydsl.version>4.1.4</querydsl.version>
     </properties>
- ㅎ
+
     <profiles>
         <profile>
             <id>local</id>
