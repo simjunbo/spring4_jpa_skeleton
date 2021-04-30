@@ -14,7 +14,7 @@
         <environment>local</environment>
 
         <!-- Spring -->
-        <spring-framework.version>4.3.3.RELEASE</spring-framework.version>
+        <spring-framework.version>4.3.29.RELEASE</spring-framework.version>
 
         <!-- QueryDsl -->
         <querydsl.version>4.1.4</querydsl.version>
